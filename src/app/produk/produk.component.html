@@ -1,0 +1,12 @@
+<div class="bg display">
+  <div class="container display">
+    <div>
+      <h1>Produk Kami</h1>
+    </div>
+    <div class="container-card">
+      <div *ngFor="let data of Kue">
+        <app-produk-card [data]="data"></app-produk-card>
+      </div>
+    </div>
+  </div>
+</div>

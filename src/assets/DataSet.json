@@ -1,0 +1,434 @@
+[
+  {
+    "id": 1,
+    "Kue1": "Nastar",
+    "kuantitas": 20,
+    "harga": 65000,
+    "totalHarga": 1300000,
+    "Tahun": 2017
+  },
+  {
+    "id": 2,
+    "Kue1": "Kaastengels",
+    "kuantitas": 20,
+    "harga": 65000,
+    "totalHarga": 1300000,
+    "Tahun": 2017
+  },
+  {
+    "id": 3,
+    "Kue1": "Putri Salju",
+    "kuantitas": 10,
+    "harga": 65000,
+    "totalHarga": 650000,
+    "Tahun": 2017
+  },
+  {
+    "id": 4,
+    "Kue1": "Stik Coklat",
+    "kuantitas": 10,
+    "harga": 65000,
+    "totalHarga": 650000,
+    "Tahun": 2017
+  },
+  {
+    "id": 5,
+    "Kue1": "Coklat Mede",
+    "kuantitas": 12,
+    "harga": 65000,
+    "totalHarga": 780000,
+    "Tahun": 2017
+  },
+  {
+    "id": 6,
+    "Kue1": "Choco Chip",
+    "kuantitas": 12,
+    "harga": 65000,
+    "totalHarga": 780000,
+    "Tahun": 2017
+  },
+  {
+    "id": 7,
+    "Kue1": "Kurma Coklat",
+    "kuantitas": 8,
+    "harga": 65000,
+    "totalHarga": 520000,
+    "Tahun": 2017
+  },
+  {
+    "id": 8,
+    "Kue1": "Milk Cookies",
+    "kuantitas": 8,
+    "harga": 65000,
+    "totalHarga": 520000,
+    "Tahun": 2017
+  },
+  {
+    "id": 9,
+    "Kue1": "Kacang",
+    "kuantitas": 3,
+    "harga": 65000,
+    "totalHarga": 195000,
+    "Tahun": 2017
+  },
+  {
+    "id": 10,
+    "Kue1": "Nastar",
+    "kuantitas": 24,
+    "harga": 65000,
+    "totalHarga": 1560000,
+    "Tahun": 2018
+  },
+  {
+    "id": 11,
+    "Kue1": "Kaastengels",
+    "kuantitas": 24,
+    "harga": 65000,
+    "totalHarga": 1560000,
+    "Tahun": 2018
+  },
+  {
+    "id": 12,
+    "Kue1": "Putri Salju",
+    "kuantitas": 12,
+    "harga": 65000,
+    "totalHarga": 780000,
+    "Tahun": 2018
+  },
+  {
+    "id": 13,
+    "Kue1": "Stik Coklat",
+    "kuantitas": 12,
+    "harga": 65000,
+    "totalHarga": 780000,
+    "Tahun": 2018
+  },
+  {
+    "id": 14,
+    "Kue1": "Coklat Mede",
+    "kuantitas": 12,
+    "harga": 65000,
+    "totalHarga": 780000,
+    "Tahun": 2018
+  },
+  {
+    "id": 15,
+    "Kue1": "Choco Chip",
+    "kuantitas": 12,
+    "harga": 65000,
+    "totalHarga": 780000,
+    "Tahun": 2018
+  },
+  {
+    "id": 16,
+    "Kue1": "Kurma Coklat",
+    "kuantitas": 12,
+    "harga": 65000,
+    "totalHarga": 780000,
+    "Tahun": 2018
+  },
+  {
+    "id": 17,
+    "Kue1": "Milk Cookies",
+    "kuantitas": 12,
+    "harga": 65000,
+    "totalHarga": 780000,
+    "Tahun": 2018
+  },
+  {
+    "id": 18,
+    "Kue1": "Kacang",
+    "kuantitas": 4,
+    "harga": 65000,
+    "totalHarga": 260000,
+    "Tahun": 2018
+  },
+  {
+    "id": 19,
+    "Kue1": "Nastar",
+    "kuantitas": 72,
+    "harga": 65000,
+    "totalHarga": 4680000,
+    "Tahun": 2019
+  },
+  {
+    "id": 20,
+    "Kue1": "Kaastengels",
+    "kuantitas": 72,
+    "harga": 65000,
+    "totalHarga": 4680000,
+    "Tahun": 2019
+  },
+  {
+    "id": 21,
+    "Kue1": "Putri Salju",
+    "kuantitas": 48,
+    "harga": 65000,
+    "totalHarga": 3120000,
+    "Tahun": 2019
+  },
+  {
+    "id": 22,
+    "Kue1": "Stik Coklat",
+    "kuantitas": 60,
+    "harga": 65000,
+    "totalHarga": 3900000,
+    "Tahun": 2019
+  },
+  {
+    "id": 23,
+    "Kue1": "Coklat Mede",
+    "kuantitas": 24,
+    "harga": 65000,
+    "totalHarga": 1560000,
+    "Tahun": 2019
+  },
+  {
+    "id": 24,
+    "Kue1": "Choco Chip",
+    "kuantitas": 24,
+    "harga": 65000,
+    "totalHarga": 1560000,
+    "Tahun": 2019
+  },
+  {
+    "id": 25,
+    "Kue1": "Kurma Coklat",
+    "kuantitas": 12,
+    "harga": 65000,
+    "totalHarga": 780000,
+    "Tahun": 2019
+  },
+  {
+    "id": 26,
+    "Kue1": "Milk Cookies",
+    "kuantitas": 12,
+    "harga": 65000,
+    "totalHarga": 780000,
+    "Tahun": 2019
+  },
+  {
+    "id": 27,
+    "Kue1": "Kacang",
+    "kuantitas": 2,
+    "harga": 65000,
+    "totalHarga": 130000,
+    "Tahun": 2019
+  },
+  {
+    "id": 28,
+    "Kue1": "Nastar",
+    "kuantitas": 27,
+    "harga": 65000,
+    "totalHarga": 1755000,
+    "Tahun": 2020
+  },
+  {
+    "id": 29,
+    "Kue1": "Kaastengels",
+    "kuantitas": 30,
+    "harga": 65000,
+    "totalHarga": 1755000,
+    "Tahun": 2020
+  },
+  {
+    "id": 30,
+    "Kue1": "Putri Salju",
+    "kuantitas": 28,
+    "harga": 65000,
+    "totalHarga": 1820000,
+    "Tahun": 2020
+  },
+  {
+    "id": 31,
+    "Kue1": "Stik Coklat",
+    "kuantitas": 36,
+    "harga": 65000,
+    "totalHarga": 2340000,
+    "Tahun": 2020
+  },
+  {
+    "id": 32,
+    "Kue1": "Coklat Mede",
+    "kuantitas": 16,
+    "harga": 65000,
+    "totalHarga": 1040000,
+    "Tahun": 2020
+  },
+  {
+    "id": 33,
+    "Kue1": "Choco Chip",
+    "kuantitas": 15,
+    "harga": 65000,
+    "totalHarga": 975000,
+    "Tahun": 2020
+  },
+  {
+    "id": 34,
+    "Kue1": "Kurma Coklat",
+    "kuantitas": 15,
+    "harga": 65000,
+    "totalHarga": 975000,
+    "Tahun": 2020
+  },
+  {
+    "id": 35,
+    "Kue1": "Milk Cookies",
+    "kuantitas": 13,
+    "harga": 65000,
+    "totalHarga": 845000,
+    "Tahun": 2020
+  },
+  {
+    "id": 36,
+    "Kue1": "Kacang",
+    "kuantitas": 5,
+    "harga": 65000,
+    "totalHarga": 325000,
+    "Tahun": 2020
+  },
+  {
+    "id": 37,
+    "Kue1": "Nastar",
+    "kuantitas": 60,
+    "harga": 65000,
+    "totalHarga": 3900000,
+    "Tahun": 2021
+  },
+  {
+    "id": 38,
+    "Kue1": "Kaastengels",
+    "kuantitas": 50,
+    "harga": 65000,
+    "totalHarga": 3250000,
+    "Tahun": 2021
+  },
+  {
+    "id": 39,
+    "Kue1": "Putri Salju",
+    "kuantitas": 55,
+    "harga": 65000,
+    "totalHarga": 3575000,
+    "Tahun": 2021
+  },
+  {
+    "id": 40,
+    "Kue1": "Stik Coklat",
+    "kuantitas": 40,
+    "harga": 65000,
+    "totalHarga": 2600000,
+    "Tahun": 2021
+  },
+  {
+    "id": 41,
+    "Kue1": "Coklat Mede",
+    "kuantitas": 45,
+    "harga": 65000,
+    "totalHarga": 2925000,
+    "Tahun": 2021
+  },
+  {
+    "id": 42,
+    "Kue1": "Choco Chip",
+    "kuantitas": 40,
+    "harga": 65000,
+    "totalHarga": 2600000,
+    "Tahun": 2021
+  },
+  {
+    "id": 43,
+    "Kue1": "Kurma Coklat",
+    "kuantitas": 30,
+    "harga": 65000,
+    "totalHarga": 1950000,
+    "Tahun": 2021
+  },
+  {
+    "id": 44,
+    "Kue1": "Milk Cookies",
+    "kuantitas": 35,
+    "harga": 65000,
+    "totalHarga": 2275000,
+    "Tahun": 2021
+  },
+  {
+    "id": 45,
+    "Kue1": "Kacang",
+    "kuantitas": 5,
+    "harga": 65000,
+    "totalHarga": 325000,
+    "Tahun": 2021
+  },
+  {
+    "id": 46,
+    "Kue1": "Nastar",
+    "kuantitas": 55,
+    "harga": 65000,
+    "totalHarga": 4125000,
+    "Tahun": 2022
+  },
+  {
+    "id": 47,
+    "Kue1": "Kaastengels",
+    "kuantitas": 40,
+    "harga": 65000,
+    "totalHarga": 3000000,
+    "Tahun": 2022
+  },
+  {
+    "id": 48,
+    "Kue1": "Putri Salju",
+    "kuantitas": 35,
+    "harga": 65000,
+    "totalHarga": 2625000,
+    "Tahun": 2022
+  },
+  {
+    "id": 49,
+    "Kue1": "Stik Coklat",
+    "kuantitas": 30,
+    "harga": 65000,
+    "totalHarga": 2250000,
+    "Tahun": 2022
+  },
+  {
+    "id": 50,
+    "Kue1": "Coklat Mede",
+    "kuantitas": 25,
+    "harga": 65000,
+    "totalHarga": 1875000,
+    "Tahun": 2022
+  },
+  {
+    "id": 51,
+    "Kue1": "Choco Chip",
+    "kuantitas": 20,
+    "harga": 65000,
+    "totalHarga": 1500000,
+    "Tahun": 2022
+  },
+  {
+    "id": 52,
+    "Kue1": "Kurma Coklat",
+    "kuantitas": 23,
+    "harga": 65000,
+    "totalHarga": 1725000,
+    "Tahun": 2022
+  },
+  {
+    "id": 53,
+    "Kue1": "Milk Cookies",
+    "kuantitas": 25,
+    "harga": 65000,
+    "totalHarga": 1875000,
+    "Tahun": 2022
+  },
+  {
+    "id": 54,
+    "Kue1": "Kacang",
+    "kuantitas": 7,
+    "harga": 65000,
+    "totalHarga": 490000,
+    "Tahun": 2022
+  }
+]

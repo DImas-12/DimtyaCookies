@@ -1,0 +1,55 @@
+header {
+  width: 100vw;
+  height: 10%;
+  background-color: #0039e6;
+  box-shadow: 5px 5px 10px grey;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: white;
+}
+.example-container {
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+.btn {
+  background: none;
+  padding: 12px 20px;
+  min-width: 200px;
+  margin: 10px;
+  cursor: pointer;
+  position: relative;
+}
+.btn:hover {
+  color: #fff;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 195px;
+  height: 40px;
+  background: #0039e6;
+  z-index: -1;
+  transition: transform 0.5s;
+
+  transform-origin: 0 0;
+  transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+  transform: scaleX(0);
+}
+.btn:hover::before {
+  transform: scaleX(1);
+}
