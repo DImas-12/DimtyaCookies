@@ -5,8 +5,7 @@
     <div>
       <mat-form-field appearance="fill" style="margin-right: 50px; width: 80%">
         <mat-label>Jenis Kue</mat-label>
-        <select matNativeControl required>
-          <option value="all">Semua</option>
+        <select matNativeControl required [(ngModel)]="selectedValue">
           <option value="Nastar">Nastar</option>
           <option value="Kaastengels">Kaastengels</option>
           <option value="Putri_Salju">Putri Salju</option>
@@ -24,7 +23,12 @@
     </div>
   </div>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8"
+    *ngIf="tablePrediksi"
+  >
     <ng-container matColumnDef="No">
       <th mat-header-cell *matHeaderCellDef>No.</th>
       <td mat-cell *matCellDef="let element">{{ element.id }}</td>

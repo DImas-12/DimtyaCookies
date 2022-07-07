@@ -63,6 +63,56 @@ export class PrediksiService {
       Tahun: 2022,
     },
   ];
+  DataKastengel = [
+    {
+      id: 1,
+      Kue: 'Kaastengels',
+      kuantitas: 20,
+      harga: 65000,
+      totalHarga: 1300000,
+      Tahun: 2017,
+    },
+    {
+      id: 1,
+      Kue: 'Kaastengels',
+      kuantitas: 24,
+      harga: 65000,
+      totalHarga: 1560000,
+      Tahun: 2018,
+    },
+    {
+      id: 1,
+      Kue: 'Kaastengels',
+      kuantitas: 72,
+      harga: 65000,
+      totalHarga: 4680000,
+      Tahun: 2019,
+    },
+    {
+      id: 1,
+      Kue: 'Kaastengels',
+      kuantitas: 30,
+      harga: 65000,
+      totalHarga: 1755000,
+      Tahun: 2020,
+    },
+    {
+      id: 1,
+      Kue: 'Kaastengels',
+      kuantitas: 50,
+      harga: 65000,
+      totalHarga: 3250000,
+      Tahun: 2021,
+    },
+    {
+      id: 1,
+      Kue: 'Kaastengels',
+      kuantitas: 40,
+      harga: 65000,
+      totalHarga: 3000000,
+      Tahun: 2022,
+    },
+  ];
   directories: BehaviorSubject<any> = new BehaviorSubject<any[]>(
     this.DataNastar
   );
@@ -99,7 +149,7 @@ export class PrediksiService {
     const tmp = {
       id: 7,
       Kue: Kue,
-
+      kuantitas: peramalan,
       harga: 65000,
       totalHarga: 1300000,
       Tahun: Tahun + 1,

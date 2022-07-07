@@ -7,6 +7,8 @@ import { PrediksiService } from './prediksi.service';
   styleUrls: ['./prediksi.component.scss'],
 })
 export class PrediksiComponent implements OnInit {
+  selectedValue: any;
+  tablePrediksi!: boolean;
   ELEMENT_DATA: any = [
     {
       id: 1,
@@ -37,7 +39,7 @@ export class PrediksiComponent implements OnInit {
   constructor(private prediksiService: PrediksiService) {}
 
   ngOnInit(): void {
-    this.GetData();
+    this.tablePrediksi = false;
   }
   GetData() {
     this.prediksiService.GetData().subscribe((response: any) => {
@@ -47,41 +49,9 @@ export class PrediksiComponent implements OnInit {
   }
   Prediksi() {
     this.prediksiService.PrediksiNastar();
-    // let rata1: any;
-    // let rata2: any;
-    // let rata3: any;
-    // let peramalan: any;
-    // let Kue: any;
-    // let Tahun: any;
-    // this.dataSource.map((x: any, i: number) => {
-    //   console.log('xxx', i);
-    //   Kue = x.Kue;
-    //   Tahun = x.Tahun;
-    //   if (i == 3) {
-    //     rata1 = x.kuantitas;
-    //     console.log('rata1', rata1);
-    //   } else if (i == 4) {
-    //     rata2 = x.kuantitas;
-    //     console.log('rata2', rata2);
-    //   } else if (i == 5) {
-    //     rata3 = x.kuantitas;
-    //     console.log('rata3', rata3);
-    //   } else {
-    //     console.log('gagal');
-    //   }
-    // });
-    // peramalan = (rata1 + rata2 + rata3) / 3;
-    // console.log('peramalan', peramalan);
-    // const tmp = {
-    //   id: 7,
-    //   Kue: Kue,
-    //   kuantitas: peramalan,
-    //   harga: 65000,
-    //   totalHarga: 1300000,
-    //   Tahun: Tahun + 1,
-    // };
-    // console.log('peramalan tmp', tmp);
-    // this.dataSource.push(tmp);
-    // console.log('data source sekarang', this.dataSource);
+    console.log('selek', this.selectedValue);
+
+    this.GetData();
+    this.tablePrediksi = true;
   }
 }
