@@ -5,25 +5,17 @@ import { map, catchError } from 'rxjs/operators';
 import Mentor from '../../assets/DataSet.json';
 
 const routes = {
-  JSON: () => Mentor,
-  Kue: () => 'http://localhost:1337/api/produks',
-  prediksi: () => 'http://localhost:1337/api/produks?populate=*',
+  produk: () => 'http://localhost:1337/api/produks',
 };
 
 @Injectable({
   providedIn: 'root',
 })
-export class PrediksiService {
+export class HomeService {
   constructor(private httpClient: HttpClient) {}
 
-  getPrediksi(): Observable<string> {
-    return this.httpClient.get(routes.prediksi()).pipe(
-      map((body: any) => body),
-      catchError(() => of('Error, could not load joke :-('))
-    );
-  }
-  getDataKue(): Observable<string> {
-    return this.httpClient.get(routes.Kue()).pipe(
+  getProduk(): Observable<string> {
+    return this.httpClient.get(routes.produk()).pipe(
       map((body: any) => body),
       catchError(() => of('Error, could not load joke :-('))
     );

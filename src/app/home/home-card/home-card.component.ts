@@ -15,7 +15,7 @@ export class HomeCardComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    console.log('data id', this.data.id);
+    console.log('data nya haha', this.data);
     console.log('activedroute', this.activatedRoute);
   }
 }

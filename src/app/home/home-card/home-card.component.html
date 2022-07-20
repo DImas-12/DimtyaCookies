@@ -1,21 +1,31 @@
-<div class="card">
+<div class="card display">
   <!-- <h3>{{ data.nama }}</h3> -->
-  <h2>User</h2>
-  <div class="">
-    <label>Name :</label>
-    <br />
-    <label>Body: </label>
-    <br />
-    <label>Email : </label>
-    <br />
-    <label>Phone :</label>
-    <br />
-  </div>
+  <div>
+    <div *ngIf="data.attributes.Kue == 'Nastar'">
+      <img src="../../../assets/kue/Nastar.jpeg" class="foto" />
+    </div>
+    <div *ngIf="data.attributes.Kue == 'Putri Salju'">
+      <img src="../../../assets/kue/Putri Salju.jpeg" class="foto" />
+    </div>
+    <div *ngIf="data.attributes.Kue == 'Stik Coklat'">
+      <img src="../../../assets/kue/Stik Coklat.jpeg" class="foto" />
+    </div>
+    <div *ngIf="data.attributes.Kue == 'Chocochip'">
+      <img src="../../../assets/kue/Choco Chip.jpeg" class="foto" />
+    </div>
+    <div *ngIf="data.attributes.Kue == 'Coklat Mede'">
+      <img src="../../../assets/kue/Coklat Mede.jpeg" class="foto" />
+    </div>
+    <div *ngIf="data.attributes.Kue == 'Kaasstengels'">
+      <img src="../../../assets/kue/Kaastengels.jpeg" class="foto" />
+    </div>
+    <div *ngIf="data.attributes.Kue == 'Kurma Coklat'">
+      <img src="../../../assets/kue/Kurma Coklat.jpeg" class="foto" />
+    </div>
+    <div *ngIf="data.attributes.Kue == 'Milk Cookies'">
+      <img src="../../../assets/kue/Milk Cookies.jpeg" class="foto" />
+    </div>
 
-  <button mat-raised-button color="primary" style="margin-top: 20px">
-    Edit
-  </button>
-  <button mat-raised-button color="warn" style="margin-top: 20px">
-    Delete
-  </button>
+    <h2>{{ data.attributes.Kue }}</h2>
+  </div>
 </div>
