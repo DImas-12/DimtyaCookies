@@ -30,6 +30,13 @@ const routes: Routes = [
         import('./prediksi/prediksi.module').then((m) => m.PrediksiModule),
     },
   ]),
+  Shell.childRoutes([
+    {
+      path: 'penjualan',
+      loadChildren: () =>
+        import('./penjualan/penjualan.module').then((m) => m.PenjualanModule),
+    },
+  ]),
 ];
 
 @NgModule({

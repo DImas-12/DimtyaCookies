@@ -5,7 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import Mentor from '../../assets/DataSet.json';
 
 const routes = {
-  produk: () => 'http://localhost:1337/api/produks',
+  produk: () => 'http://localhost:1337/api/produks?populate=*',
 };
 
 @Injectable({

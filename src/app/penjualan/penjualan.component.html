@@ -1,0 +1,109 @@
+<div class="bg display2">
+  <div class="container">
+    <div style="display: flex; flex-direction: column">
+      <div style="display: flex; flex-direction: row">
+        <h2>Penjualan</h2>
+        <mat-button-toggle-group
+          name="fontStyle"
+          aria-label="Font Style"
+          class="toogle"
+          (change)="toogle($event)"
+        >
+          <mat-button-toggle value="cari">Cari</mat-button-toggle>
+          <mat-button-toggle value="Tambah">Tambah</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <div *ngIf="Cari">
+        <mat-form-field
+          appearance="fill"
+          style="margin-right: 50px; width: 70%"
+        >
+          <mat-label>Kue</mat-label>
+          <mat-select [(ngModel)]="selectedValue">
+            <mat-option *ngFor="let food of DataKue" [value]="food.produk">
+              {{ food.produk }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="getDataPenjualan()">
+          Cari
+        </button>
+      </div>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="DialogAdd()"
+        *ngIf="Tambah"
+      >
+        Tambah
+      </button>
+    </div>
+  </div>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8"
+    *ngIf="tablePrediksi"
+  >
+    <ng-container matColumnDef="Tahun">
+      <th mat-header-cell *matHeaderCellDef>Tahun</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.attributes.Tahun }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="kuantitas">
+      <th mat-header-cell *matHeaderCellDef>Kuantitas</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.attributes.Kuantitas }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="harga">
+      <th mat-header-cell *matHeaderCellDef>Harga</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.attributes.Harga }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="totalpendapatan">
+      <th mat-header-cell *matHeaderCellDef>Total Pendapatan</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.attributes.Total_harga }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>action</th>
+      <td mat-cell *matCellDef="let element">
+        <div style="display: flex; flex-direction: row">
+          <div class="lingkaran display">
+            <button
+              mat-stroked-button
+              color="primary"
+              (click)="EditData(element)"
+            >
+              <mat-icon>border_color</mat-icon>
+            </button>
+          </div>
+          <div class="lingkaran display">
+            <button
+              mat-stroked-button
+              color="primary"
+              (click)="DeleteData(element)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </td>
+      <td mat-cell *matCellDef="let element">
+        {{ element.attributes.Produk }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

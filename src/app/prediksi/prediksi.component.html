@@ -4,10 +4,10 @@
 
     <div>
       <mat-form-field appearance="fill" style="margin-right: 50px; width: 70%">
-        <mat-label>Kue</mat-label>
+        <mat-label>Produk</mat-label>
         <mat-select [(ngModel)]="selectedValue">
-          <mat-option *ngFor="let food of DataKue" [value]="food.kue">
-            {{ food.kue }}
+          <mat-option *ngFor="let food of DataProduk" [value]="food.produk">
+            {{ food.produk }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -54,7 +54,7 @@
         {{ element.attributes.Harga }}
       </td>
     </ng-container>
-    <ng-container matColumnDef="totalharga">
+    <ng-container matColumnDef="totalpendapatan">
       <th mat-header-cell *matHeaderCellDef>Total Harga</th>
       <td mat-cell *matCellDef="let element">
         {{ element.attributes.Total_harga }}

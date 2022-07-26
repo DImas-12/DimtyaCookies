@@ -23,11 +23,16 @@ export class PrediksiComponent implements OnInit {
   DatasetKurmacoklat: any;
   DatasetMilkCookies: any;
 
-  DataKue: any = [];
+  DataProduk: any = [];
   DataPeramalan: any;
   KueSekarang: any;
 
-  displayedColumns: string[] = ['Tahun', 'kuantitas', 'harga', 'totalharga'];
+  displayedColumns: string[] = [
+    'Tahun',
+    'kuantitas',
+    'harga',
+    'totalpendapatan',
+  ];
   // displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource: any;
 
@@ -51,11 +56,11 @@ export class PrediksiComponent implements OnInit {
         console.log('Kueeee44', response);
         response.data.map((x: any) => {
           const tmp = {
-            kue: x.attributes.Kue,
+            produk: x.attributes.Produk,
           };
-          this.DataKue.push(tmp);
+          this.DataProduk.push(tmp);
         });
-        console.log('Kueeee', this.DataKue);
+        console.log('Kueeee', this.DataProduk);
       });
   }
   getDataPrediksi() {
@@ -72,25 +77,25 @@ export class PrediksiComponent implements OnInit {
         this.DataPrediksi.map((x: any) => {
           const tmpPrediksi = {
             peramalan: x.attributes.penjualans.data,
-            kue: x.attributes.Kue,
+            produk: x.attributes.Produk,
           };
 
-          if (tmpPrediksi.kue === 'Nastar') {
+          if (tmpPrediksi.produk === 'Nastar') {
             this.DatasetNastar = tmpPrediksi;
             console.log('data nastar', this.DatasetNastar);
-          } else if (tmpPrediksi.kue === 'Kaasstengels') {
+          } else if (tmpPrediksi.produk === 'Kaasstengels') {
             this.DatasetKastengel = tmpPrediksi;
-          } else if (tmpPrediksi.kue === 'Putri Salju') {
+          } else if (tmpPrediksi.produk === 'Putri Salju') {
             this.DatasetPutriSalju = tmpPrediksi;
-          } else if (tmpPrediksi.kue === 'Stik Coklat') {
+          } else if (tmpPrediksi.produk === 'Stik Coklat') {
             this.DatasetStikcoklat = tmpPrediksi;
-          } else if (tmpPrediksi.kue === 'Coklat Mede') {
+          } else if (tmpPrediksi.produk === 'Coklat Mede') {
             this.DatasetCoklatmede = tmpPrediksi;
-          } else if (tmpPrediksi.kue === 'Chocochip') {
+          } else if (tmpPrediksi.produk === 'Chocochip') {
             this.DatasetChocochip = tmpPrediksi;
-          } else if (tmpPrediksi.kue === 'Kurma Coklat') {
+          } else if (tmpPrediksi.produk === 'Kurma Coklat') {
             this.DatasetKurmacoklat = tmpPrediksi;
-          } else if (tmpPrediksi.kue === 'Milk Cookies') {
+          } else if (tmpPrediksi.produk === 'Milk Cookies') {
             this.DatasetMilkCookies = tmpPrediksi;
           }
         });

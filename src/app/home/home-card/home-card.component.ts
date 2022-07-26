@@ -10,12 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class HomeCardComponent implements OnInit {
   @Input() data!: any;
-
+  FilePath: any;
   datacard: any;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor() {}
 
   ngOnInit(): void {
     console.log('data nya haha', this.data);
-    console.log('activedroute', this.activatedRoute);
   }
 }

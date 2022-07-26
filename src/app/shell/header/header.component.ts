@@ -22,4 +22,7 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.router.navigate(['login']);
   }
+  Penjualan() {
+    this.router.navigate(['penjualan']);
+  }
 }
