@@ -3,7 +3,7 @@ import { finalize } from 'rxjs';
 import { ProdukService } from './produk.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogProdukComponent } from './dialogProduk/dialogProduk.component';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-produk',
   templateUrl: './produk.component.html',
@@ -31,9 +31,11 @@ export class ProdukComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log('Dialog result', result);
-      if (this.title2 == 'add') {
-        console.log('ini add', result);
-        this.TambahData(result);
+      if (result.data) {
+        if (this.title2 == 'add') {
+          console.log('ini add', result);
+          this.TambahData(result);
+        }
       }
     });
   }
@@ -49,9 +51,11 @@ export class ProdukComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log('data edit haha2', this.title2);
-      if (this.title2 == 'edit') {
-        console.log('data edit haha');
-        this.EditData(e.id, result);
+      if (result.data) {
+        if (this.title2 == 'edit') {
+          console.log('data edit haha');
+          this.EditData(e.id, result);
+        }
       }
     });
   }
@@ -72,58 +76,100 @@ export class ProdukComponent implements OnInit {
   }
 
   TambahData(data: any) {
-    console.log('data tambah', data);
-    const tmp = {
-      data: {
-        Produk: data.Produk,
-        Harga: parseInt(data.Harga),
-      },
-    };
-    this.produkService
-      .PostProduk(tmp)
-      .pipe(
-        finalize(() => {
-          console.log('done');
-        })
-      )
-      .subscribe((response: any) => {
-        console.log('response', response);
-        this.getDataProduk();
-      });
+    Swal.fire({
+      title: 'Do you want to save the changes?',
+      showDenyButton: true,
+
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        console.log('data tambah', data);
+        const tmp = {
+          data: {
+            Produk: data.Produk,
+            Harga: parseInt(data.Harga),
+          },
+        };
+        this.produkService
+          .PostProduk(tmp)
+          .pipe(
+            finalize(() => {
+              console.log('done');
+            })
+          )
+          .subscribe((response: any) => {
+            console.log('response', response);
+            this.getDataProduk();
+            Swal.fire('Berhasil', 'Data Berhasil Disimpan', 'success');
+          });
+      } else if (result.isDenied) {
+        Swal.fire('Tidak Berhasil', 'Data Tidak Disimpan', 'info');
+      }
+    });
   }
   EditData(id: any, data: any) {
-    console.log('data edit', data);
-    console.log('data edit id', id);
-    const tmp = {
-      data: {
-        Produk: data.Produk,
-        Harga: parseInt(data.Harga),
-      },
-    };
-    this.produkService
-      .UpdataProduk(id, tmp)
-      .pipe(
-        finalize(() => {
-          console.log('done');
-        })
-      )
-      .subscribe((response: any) => {
-        console.log('response', response);
-        this.getDataProduk();
-      });
+    Swal.fire({
+      title: 'Do you want to save the changes?',
+      showDenyButton: true,
+
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        console.log('data edit', data);
+        console.log('data edit id', id);
+        const tmp = {
+          data: {
+            Produk: data.Produk,
+            Harga: parseInt(data.Harga),
+          },
+        };
+        this.produkService
+          .UpdataProduk(id, tmp)
+          .pipe(
+            finalize(() => {
+              console.log('done');
+            })
+          )
+          .subscribe((response: any) => {
+            console.log('response', response);
+            this.getDataProduk();
+            Swal.fire('Berhasil', 'Data Berhasil Disimpan', 'success');
+          });
+      } else if (result.isDenied) {
+        Swal.fire('Tidak Berhasil', 'Data Tidak Disimpan', 'info');
+      }
+    });
   }
   DeleteData(e: any) {
-    console.log('data eee', e);
-    this.produkService
-      .DeleteProduk(e.id)
-      .pipe(
-        finalize(() => {
-          console.log('done');
-        })
-      )
-      .subscribe((response: any) => {
-        console.log('response', response);
-        this.getDataProduk();
-      });
+    Swal.fire({
+      title: 'Apa Kamu Yakin?',
+      text: 'Data Akan Dihapus Selamanya',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log('data eee', e);
+        console.log('data eee', e);
+        this.produkService
+          .DeleteProduk(e.id)
+          .pipe(
+            finalize(() => {
+              console.log('done');
+            })
+          )
+          .subscribe((response: any) => {
+            console.log('response', response);
+            this.getDataProduk();
+            Swal.fire('Deleted!', 'File Berhasil Dihapus', 'success');
+          });
+      }
+    });
   }
 }

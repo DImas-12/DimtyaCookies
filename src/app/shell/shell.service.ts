@@ -1,4 +1,5 @@
 import { Routes, Route } from '@angular/router';
+import { AuthGuard } from '../auth/auth.guard';
 
 import { HeaderComponent } from './header/header.component';
 
@@ -16,7 +17,9 @@ export class Shell {
       path: '',
       component: HeaderComponent,
       children: routes,
+      canActivate: [AuthGuard],
       // Reuse ShellComponent instance when navigating between child views
+      data: { reuse: true },
     };
   }
 }

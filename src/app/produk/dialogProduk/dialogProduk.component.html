@@ -12,12 +12,13 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close (click)="closeDialog()">Cancel</button>
   <button
     mat-button
     [mat-dialog-close]="true"
     cdkFocusInitial
-    [mat-dialog-close]="DialogForm.value"
+    (click)="OnSimpan()"
+    *ngIf="TombolSimpan"
   >
     Simpan
   </button>

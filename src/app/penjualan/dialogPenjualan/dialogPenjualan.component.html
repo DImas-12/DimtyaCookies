@@ -10,7 +10,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" style="margin-right: 50px; width: 10%">
+    <mat-form-field appearance="fill" style="margin-right: 50px">
       <mat-label>Tahun</mat-label>
       <select matNativeControl required formControlName="Tahun">
         <option value="2017">2017</option>
@@ -57,12 +57,13 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close (click)="closeDialog()">Cancel</button>
   <button
     mat-button
     [mat-dialog-close]="true"
     cdkFocusInitial
-    [mat-dialog-close]="DialogForm"
+    (click)="OnSimpan()"
+    *ngIf="TombolSimpan"
   >
     Simpan
   </button>

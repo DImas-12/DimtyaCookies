@@ -3,7 +3,7 @@ import { Component, DoCheck, Inject, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PenjualanService } from '../penjualan.service';
 import { finalize } from 'rxjs';
@@ -20,24 +20,33 @@ export class DialogPenjualanComponent implements OnInit, DoCheck {
   DialogForm: any;
   title: any;
   datacard: any;
+  TombolSimpan!: boolean;
   constructor(
     @Inject(MAT_DIALOG_DATA) public dataTitle: any,
-    private penjualanService: PenjualanService
+    private penjualanService: PenjualanService,
+    private dialogRef: MatDialogRef<DialogPenjualanComponent>
   ) {}
   ngDoCheck(): void {
     // console.log('perubahan dochek');
     if (this.dataTitle.Title == 'add') {
-      this.DialogForm = this.AddForm.value;
-      console.log('data form2', this.DialogForm);
+      if (this.AddForm.status == 'INVALID') {
+        console.log('perubahan invalid');
+        this.TombolSimpan = false;
+      } else if (this.AddForm.status == 'VALID') {
+        console.log('perubahan valid');
+        this.TombolSimpan = true;
+        this.DialogForm = this.AddForm.value;
+      }
     } else if (this.dataTitle.Title == 'edit') {
-      this.DialogForm = this.EditForm.value;
-      console.log('data form2', this.DialogForm);
+      if (this.EditForm.status == 'INVALID') {
+        console.log('perubahan invalid');
+        this.TombolSimpan = false;
+      } else if (this.EditForm.status == 'VALID') {
+        console.log('perubahan valid');
+        this.TombolSimpan = true;
+        this.DialogForm = this.EditForm.value;
+      }
     }
-    // if (this.EditForm.status == 'INVALID') {
-    //   console.log('perubahan invalid');
-    // } else if (this.EditForm.status == 'VALID') {
-    //   console.log('perubahan valid');
-    // }
   }
 
   ngOnInit(): void {
@@ -51,6 +60,12 @@ export class DialogPenjualanComponent implements OnInit, DoCheck {
       this.FormEdit();
       this.DataEdit();
     }
+  }
+  OnSimpan() {
+    this.dialogRef.close({ data: this.DialogForm });
+  }
+  closeDialog() {
+    this.dialogRef.close({ event: 'Cancel' });
   }
   getdataKue() {
     this.penjualanService

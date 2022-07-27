@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
 import { PrediksiService } from './prediksi.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-prediksi',
   templateUrl: './prediksi.component.html',
@@ -167,5 +167,6 @@ export class PrediksiComponent implements OnInit {
 
     this.tablePrediksi = true;
     this.dataSource = this.DataPeramalan.peramalan;
+    Swal.fire('Berhasil', 'Data Berhasil Diprediksi', 'success');
   }
 }

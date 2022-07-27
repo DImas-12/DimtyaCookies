@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -19,10 +20,12 @@ export class HeaderComponent implements OnInit {
   Prediksi() {
     this.router.navigate(['prediksi']);
   }
-  logout() {
-    this.router.navigate(['login']);
-  }
+
   Penjualan() {
     this.router.navigate(['penjualan']);
+  }
+  logOut() {
+    localStorage.removeItem(environment.tokenKey);
+    this.router.navigate(['login']);
   }
 }

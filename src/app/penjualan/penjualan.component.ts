@@ -4,7 +4,7 @@ import { PenjualanService } from './penjualan.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPenjualanComponent } from './dialogPenjualan/dialogPenjualan.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-penjualan',
   templateUrl: './penjualan.component.html',
@@ -83,9 +83,11 @@ export class PenjualanComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log('Dialog result', result);
-      if (this.title2 == 'add') {
-        console.log('ini add', result);
-        this.TambahData(result);
+      if (result.data) {
+        if (this.title2 == 'add') {
+          console.log('ini add', result.data);
+          this.TambahData(result.data);
+        }
       }
     });
   }
@@ -100,11 +102,12 @@ export class PenjualanComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log('data edit haha2', this.title2);
-      console.log('data edit haha555', result);
-      if (this.title2 == 'edit') {
-        console.log('data edit haha', result);
-        // this.EditData(e.id, result);
-        this.EditDataAPI(e.id, result);
+      if (result.data) {
+        if (this.title2 == 'edit') {
+          console.log('data edit haha', result);
+          // this.EditData(e.id, result);
+          this.EditDataAPI(e.id, result);
+        }
       }
     });
   }
@@ -188,68 +191,109 @@ export class PenjualanComponent implements OnInit {
 
   // Service
   TambahData(data: any) {
-    console.log('data tambah', data);
-    const ID = this.DataKue.find(
-      (element: any) => element.produk == data.Produk
-    );
-    console.log('found', ID);
-    const tmp = {
-      data: {
-        Tahun: data.Tahun,
-        Kuantitas: parseInt(data.Kuantitas),
-        Harga: parseInt(data.Harga),
-        Total_harga: parseInt(data.Harga) * parseInt(data.Kuantitas),
-        produk: ID.id,
-      },
-    };
-    console.log('data tambah tmp', tmp);
-    // this.penjualanService
-    //   .PostPenjualan(tmp)
-    //   .pipe(
-    //     finalize(() => {
-    //       console.log('done');
-    //     })
-    //   )
-    //   .subscribe((response: any) => {
-    //     console.log('response', response);
-    //   });
+    Swal.fire({
+      title: 'Do you want to save the changes?',
+      showDenyButton: true,
+
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        console.log('data tambah', data);
+        const ID = this.DataKue.find(
+          (element: any) => element.produk == data.Produk
+        );
+        console.log('found', ID);
+        const tmp = {
+          data: {
+            Tahun: data.Tahun,
+            Kuantitas: parseInt(data.Kuantitas),
+            Harga: parseInt(data.Harga),
+            Total_harga: parseInt(data.Harga) * parseInt(data.Kuantitas),
+            produk: ID.id,
+          },
+        };
+        console.log('data tambah tmp', tmp);
+        this.penjualanService
+          .PostPenjualan(tmp)
+          .pipe(
+            finalize(() => {
+              console.log('done');
+            })
+          )
+          .subscribe((response: any) => {
+            console.log('response', response);
+            Swal.fire('Berhasil', 'Data Berhasil Disimpan', 'success');
+          });
+      } else if (result.isDenied) {
+        Swal.fire('Tidak Berhasil', 'Data Tidak Disimpan', 'info');
+      }
+    });
   }
   EditDataAPI(id: any, data: any) {
-    console.log('data edit', data);
-    console.log('data edit id', id);
+    Swal.fire({
+      title: 'Do you want to save the changes?',
+      showDenyButton: true,
 
-    const tmp = {
-      data: {
-        Tahun: data.Tahun,
-        Kuantitas: parseInt(data.Kuantitas),
-        Harga: parseInt(data.Harga),
-        Total_harga: parseInt(data.Harga) * parseInt(data.Kuantitas),
-      },
-    };
-    this.penjualanService
-      .UpdataProduk(id, tmp)
-      .pipe(
-        finalize(() => {
-          console.log('done');
-        })
-      )
-      .subscribe((response: any) => {
-        console.log('response', response);
-        this.getDataPenjualan();
-      });
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        console.log('data edit', data);
+        console.log('data edit id', id);
+
+        const tmp = {
+          data: {
+            Tahun: data.Tahun,
+            Kuantitas: parseInt(data.Kuantitas),
+            Harga: parseInt(data.Harga),
+            Total_harga: parseInt(data.Harga) * parseInt(data.Kuantitas),
+          },
+        };
+        this.penjualanService
+          .UpdataProduk(id, tmp)
+          .pipe(
+            finalize(() => {
+              console.log('done');
+            })
+          )
+          .subscribe((response: any) => {
+            console.log('response', response);
+            this.getDataPenjualan();
+            Swal.fire('Berhasil', 'Data Berhasil Disimpan', 'success');
+          });
+      } else if (result.isDenied) {
+        Swal.fire('Tidak Berhasil', 'Data Tidak Disimpan', 'info');
+      }
+    });
   }
   DeleteData(e: any) {
-    console.log('data eee', e);
-    this.penjualanService
-      .DeleteProduk(e.id)
-      .pipe(
-        finalize(() => {
-          console.log('done');
-        })
-      )
-      .subscribe((response: any) => {
-        console.log('response', response);
-        this.getDataPenjualan();
-      });
+    Swal.fire({
+      title: 'Apa Kamu Yakin?',
+      text: 'Data Akan Dihapus Selamanya',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log('data eee', e);
+        this.penjualanService
+          .DeleteProduk(e.id)
+          .pipe(
+            finalize(() => {
+              console.log('done');
+            })
+          )
+          .subscribe((response: any) => {
+            console.log('response', response);
+            this.getDataPenjualan();
+            Swal.fire('Deleted!', 'File Berhasil Dihapus', 'success');
+          });
+      }
+    });
   }
 }

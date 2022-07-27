@@ -1,5 +1,6 @@
 import {
   Component,
+  DoCheck,
   Inject,
   Input,
   OnChanges,
@@ -10,7 +11,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProdukService } from '../produk.service';
 import { finalize } from 'rxjs';
@@ -19,18 +20,25 @@ import { finalize } from 'rxjs';
   templateUrl: './dialogProduk.component.html',
   styleUrls: ['./dialogProduk.component.scss'],
 })
-export class DialogProdukComponent implements OnInit, OnChanges {
+export class DialogProdukComponent implements OnInit, DoCheck {
   @Input() data!: any;
   DialogForm!: FormGroup;
   title: any;
   datacard: any;
+  TombolSimpan!: boolean;
   constructor(
     @Inject(MAT_DIALOG_DATA) public dataTitle: any,
-    private produkService: ProdukService
+    private produkService: ProdukService,
+    private dialogRef: MatDialogRef<DialogProdukComponent>
   ) {}
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('perubahan', changes);
-    console.log('perubahan form', this.DialogForm);
+  ngDoCheck(): void {
+    if (this.DialogForm.status == 'INVALID') {
+      console.log('perubahan invalid');
+      this.TombolSimpan = false;
+    } else if (this.DialogForm.status == 'VALID') {
+      console.log('perubahan valid');
+      this.TombolSimpan = true;
+    }
   }
 
   ngOnInit(): void {
@@ -43,6 +51,13 @@ export class DialogProdukComponent implements OnInit, OnChanges {
       this.DataEdit();
     }
   }
+  OnSimpan() {
+    this.dialogRef.close({ data: this.DialogForm });
+  }
+  closeDialog() {
+    this.dialogRef.close({ event: 'Cancel' });
+  }
+
   DataEdit() {
     console.log('data isis', this.dataTitle);
     this.DialogForm.setValue({
