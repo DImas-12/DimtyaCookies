@@ -52,7 +52,7 @@ export class DialogProdukComponent implements OnInit, DoCheck {
     }
   }
   OnSimpan() {
-    this.dialogRef.close({ data: this.DialogForm });
+    this.dialogRef.close({ data: this.DialogForm.value });
   }
   closeDialog() {
     this.dialogRef.close({ event: 'Cancel' });
@@ -68,26 +68,10 @@ export class DialogProdukComponent implements OnInit, DoCheck {
   FormGroup() {
     this.DialogForm = new FormGroup({
       Produk: new FormControl(null, Validators.required),
-      Harga: new FormControl(null, [
-        Validators.required,
-        Validators.pattern('^[0-9]*$'),
-      ]),
+      Harga: new FormControl(null, Validators.required),
     });
   }
 
-  TambahData() {
-    console.log('data tambah', this.DialogForm.value);
-    this.produkService
-      .PostProduk(this.DialogForm.value)
-      .pipe(
-        finalize(() => {
-          console.log('done');
-        })
-      )
-      .subscribe((response: any) => {
-        console.log('response', response);
-      });
-  }
   getDataProduk() {
     this.produkService
       .getProduk()

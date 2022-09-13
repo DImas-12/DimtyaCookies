@@ -13,22 +13,23 @@ export class PrediksiComponent implements OnInit {
   Nratarata: any;
 
   // Dataset
-  DataPrediksi: any;
-  DatasetNastar: any;
-  DatasetKastengel: any;
-  DatasetPutriSalju: any;
-  DatasetStikcoklat: any;
-  DatasetCoklatmede: any;
-  DatasetChocochip: any;
-  DatasetKurmacoklat: any;
-  DatasetMilkCookies: any;
+  DataPrediksi: any = [];
 
   DataProduk: any = [];
-  DataPeramalan: any;
-  KueSekarang: any;
+  DataPeramalan: any = [];
 
+  DataNastar: any;
+  DataKaastengels: any;
+  DataPutriSalju: any;
+  DataStikCoklat: any;
+  DataCoklatMede: any;
+  DataChocoChip: any;
+  DataKurmaCoklat: any;
+  DataMilkCookies: any;
+  Prediksi22: any;
+  Prediksi23: any = [];
   displayedColumns: string[] = [
-    'Tahun',
+    'Produk',
     'kuantitas',
     'harga',
     'totalpendapatan',
@@ -74,69 +75,56 @@ export class PrediksiComponent implements OnInit {
       .subscribe((response: any) => {
         this.DataPrediksi = response.data;
 
+        console.log('sebelum looping', this.DataPrediksi);
         this.DataPrediksi.map((x: any) => {
           const tmpPrediksi = {
             peramalan: x.attributes.penjualans.data,
             produk: x.attributes.Produk,
           };
 
-          if (tmpPrediksi.produk === 'Nastar') {
-            this.DatasetNastar = tmpPrediksi;
-            console.log('data nastar', this.DatasetNastar);
-          } else if (tmpPrediksi.produk === 'Kaasstengels') {
-            this.DatasetKastengel = tmpPrediksi;
-          } else if (tmpPrediksi.produk === 'Putri Salju') {
-            this.DatasetPutriSalju = tmpPrediksi;
-          } else if (tmpPrediksi.produk === 'Stik Coklat') {
-            this.DatasetStikcoklat = tmpPrediksi;
-          } else if (tmpPrediksi.produk === 'Coklat Mede') {
-            this.DatasetCoklatmede = tmpPrediksi;
-          } else if (tmpPrediksi.produk === 'Chocochip') {
-            this.DatasetChocochip = tmpPrediksi;
-          } else if (tmpPrediksi.produk === 'Kurma Coklat') {
-            this.DatasetKurmacoklat = tmpPrediksi;
-          } else if (tmpPrediksi.produk === 'Milk Cookies') {
-            this.DatasetMilkCookies = tmpPrediksi;
-          }
+          this.Prediksi22 = this.PrediksiKue(tmpPrediksi);
+          this.Prediksi23.push(this.Prediksi22);
+          console.log('sesudah siallan', this.Prediksi23);
+
+          this.dataSource = this.Prediksi23;
+          Swal.fire('Berhasil', 'Data Berhasil Diprediksi', 'success');
+          this.tablePrediksi = true;
+          // this.DataPeramalan = tmpPrediksi;
+          // if (tmpPrediksi.produk === this.selectedValue) {
+          //   this.DataPeramalan = tmpPrediksi;
+          // }
+
+          let tes2 = this.testing(tmpPrediksi.produk);
         });
-        this.PrediksiKue();
+
+        let tes3 = this.testing('2');
+
+        console.log('tessss2', tes3);
       });
   }
-  PrediksiKue() {
-    console.log('prediksii', this.selectedValue);
-
-    if (this.selectedValue == 'Nastar') {
-      this.DataPeramalan = this.DatasetNastar;
-    } else if (this.selectedValue == 'Kaasstengels') {
-      this.DataPeramalan = this.DatasetKastengel;
-    } else if (this.selectedValue == 'Putri Salju') {
-      this.DataPeramalan = this.DatasetPutriSalju;
-    } else if (this.selectedValue == 'Stik Coklat') {
-      this.DataPeramalan = this.DatasetStikcoklat;
-    } else if (this.selectedValue == 'Coklat Mede') {
-      this.DataPeramalan = this.DatasetCoklatmede;
-    } else if (this.selectedValue == 'Chocochip') {
-      this.DataPeramalan = this.DatasetChocochip;
-    } else if (this.selectedValue == 'Kurma Coklat') {
-      this.DataPeramalan = this.DatasetKurmacoklat;
-    } else if (this.selectedValue == 'Milk Cookies') {
-      this.DataPeramalan = this.DatasetMilkCookies;
-    }
-    let N2019: any;
-    let N2020: any;
-    let N2021: any;
-    let N2022: any;
+  testing(data: any) {
+    console.log('data testing', data);
+    return data;
+  }
+  PrediksiKue(dataPrediksi: any) {
+    let N2019!: number;
+    let N2020!: number;
+    let N2021!: number;
+    let N2022!: number;
+    let N2023!: number;
+    let N2024!: number;
+    let N2025!: number;
     let peramalan: any;
 
     let Tahun: any;
 
-    this.KueSekarang = this.selectedValue;
-    console.log('data peramalan siallan', this.DataPeramalan);
+    console.log('data peramalan siallan', dataPrediksi);
 
-    this.DataPeramalan.peramalan.map((x: any, i: number) => {
+    dataPrediksi.peramalan.map((x: any, i: number) => {
       Tahun = x.attributes.Tahun;
       if (x.attributes.Tahun == 2019) {
         N2019 = x.attributes.Kuantitas;
+        console.log('2019', N2019);
       } else if (x.attributes.Tahun == 2020) {
         N2020 = x.attributes.Kuantitas;
       } else if (x.attributes.Tahun == 2021) {
@@ -145,13 +133,25 @@ export class PrediksiComponent implements OnInit {
         N2022 = x.attributes.Kuantitas;
       }
     });
+    console.log('peramalan 2023 siallan', N2023);
 
-    if (this.Nratarata == 2) {
-      peramalan = (N2021 + N2022) / 2;
-    } else if (this.Nratarata == 3) {
-      peramalan = (N2020 + N2021 + N2022) / 3;
-    } else if (this.Nratarata == 4) {
-      peramalan = (N2019 + N2020 + N2021 + N2022) / 4;
+    // if (N2023 === undefined) {
+    //   peramalan = this.Perhitungan2023(N2019, N2020, N2021, N2022);
+    // } else if (N2024 === undefined) {
+    //   peramalan = this.Perhitungan2024(N2020, N2021, N2022, N2023);
+    // } else if (N2025 === undefined) {
+    //   peramalan = this.Perhitungan2025(N2021, N2022, N2023, N2024);
+    // }
+
+    if (this.selectedValue == 2023) {
+      peramalan = this.Perhitungan2023(N2019, N2020, N2021, N2022);
+    } else if (this.selectedValue == 2024) {
+      N2023 = this.Perhitungan2023(N2019, N2020, N2021, N2022);
+      peramalan = this.Perhitungan2024(N2020, N2021, N2022, N2023);
+    } else if (this.selectedValue == 2025) {
+      N2023 = this.Perhitungan2023(N2019, N2020, N2021, N2022);
+      N2024 = this.Perhitungan2024(N2020, N2021, N2022, N2023);
+      peramalan = this.Perhitungan2025(N2021, N2022, N2023, N2024);
     }
     console.log('peramalan siallan', peramalan);
     const tmp = {
@@ -159,14 +159,48 @@ export class PrediksiComponent implements OnInit {
         Kuantitas: Math.round(peramalan),
         Harga: 75000,
         Total_harga: 75000 * Math.round(peramalan),
-        Tahun: parseInt(Tahun) + 1,
+        Produk: dataPrediksi.produk,
       },
     };
+    return tmp;
+    // dataPrediksi.peramalan.push(tmp);
 
-    this.DataPeramalan.peramalan.push(tmp);
+    // this.tablePrediksi = true;
+    // this.dataSource = dataPrediksi.peramalan;
+    // Swal.fire('Berhasil', 'Data Berhasil Diprediksi', 'success');
+  }
 
-    this.tablePrediksi = true;
-    this.dataSource = this.DataPeramalan.peramalan;
-    Swal.fire('Berhasil', 'Data Berhasil Diprediksi', 'success');
+  Perhitungan2023(n1: number, n2: number, n3: number, n4: number) {
+    let ramal: any;
+    if (this.Nratarata == 2) {
+      ramal = (n3 + n4) / 2;
+    } else if (this.Nratarata == 3) {
+      ramal = (n2 + n3 + n4) / 3;
+    } else if (this.Nratarata == 4) {
+      ramal = (n1 + n2 + n3 + n4) / 4;
+    }
+    return ramal;
+  }
+  Perhitungan2024(n1: number, n2: number, n3: number, n4: number) {
+    let ramal: any;
+    if (this.Nratarata == 2) {
+      ramal = (n3 + n4) / 2;
+    } else if (this.Nratarata == 3) {
+      ramal = (n2 + n3 + n4) / 3;
+    } else if (this.Nratarata == 4) {
+      ramal = (n1 + n2 + n3 + n4) / 4;
+    }
+    return ramal;
+  }
+  Perhitungan2025(n1: number, n2: number, n3: number, n4: number) {
+    let ramal: any;
+    if (this.Nratarata == 2) {
+      ramal = (n3 + n4) / 2;
+    } else if (this.Nratarata == 3) {
+      ramal = (n2 + n3 + n4) / 3;
+    } else if (this.Nratarata == 4) {
+      ramal = (n1 + n2 + n3 + n4) / 4;
+    }
+    return ramal;
   }
 }

@@ -16,6 +16,7 @@ export class PenjualanComponent implements OnInit {
 
   // boolean
   tablePrediksi!: boolean;
+
   Cari!: boolean;
   Tambah!: boolean;
   // Dataset
@@ -40,6 +41,7 @@ export class PenjualanComponent implements OnInit {
   ];
 
   dataSource: any;
+  dataSource2: any;
 
   constructor(
     private penjualanService: PenjualanService,
@@ -48,6 +50,7 @@ export class PenjualanComponent implements OnInit {
 
   ngOnInit(): void {
     this.tablePrediksi = false;
+
     this.Cari = false;
     this.Tambah = false;
     this.getDataKue();
@@ -67,6 +70,7 @@ export class PenjualanComponent implements OnInit {
         response.data.map((x: any) => {
           const tmp = {
             produk: x.attributes.Produk,
+            harga: x.attributes.Harga,
             id: x.id,
           };
           this.DataKue.push(tmp);
@@ -86,6 +90,7 @@ export class PenjualanComponent implements OnInit {
       if (result.data) {
         if (this.title2 == 'add') {
           console.log('ini add', result.data);
+
           this.TambahData(result.data);
         }
       }
@@ -200,17 +205,18 @@ export class PenjualanComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        console.log('data tambah', data);
+        console.log('data tambah kue', this.DataKue);
         const ID = this.DataKue.find(
           (element: any) => element.produk == data.Produk
         );
+
         console.log('found', ID);
         const tmp = {
           data: {
             Tahun: data.Tahun,
-            Kuantitas: parseInt(data.Kuantitas),
-            Harga: parseInt(data.Harga),
-            Total_harga: parseInt(data.Harga) * parseInt(data.Kuantitas),
+            Kuantitas: data.Kuantitas,
+            Harga: parseInt(ID.harga),
+            Total_harga: parseInt(ID.harga) * data.Kuantitas,
             produk: ID.id,
           },
         };
@@ -247,9 +253,9 @@ export class PenjualanComponent implements OnInit {
         const tmp = {
           data: {
             Tahun: data.Tahun,
-            Kuantitas: parseInt(data.Kuantitas),
-            Harga: parseInt(data.Harga),
-            Total_harga: parseInt(data.Harga) * parseInt(data.Kuantitas),
+            Kuantitas: data.Kuantitas,
+            Harga: data.Harga,
+            Total_harga: data.Harga * data.Kuantitas,
           },
         };
         this.penjualanService

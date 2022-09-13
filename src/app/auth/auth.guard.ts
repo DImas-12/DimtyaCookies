@@ -8,6 +8,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,7 @@ export class AuthGuard implements CanActivate {
     } else {
       // Force Logout if there is no token
       this.router.navigate(['/login']);
+
       return false;
     }
   }

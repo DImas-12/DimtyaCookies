@@ -6,7 +6,10 @@
   box-shadow: 5px 5px 10px grey;
   border-radius: 20px;
 }
-
+.display2 {
+  display: flex;
+  justify-content: center;
+}
 label {
   margin: 20px, 0px, 20px, 0px;
 }

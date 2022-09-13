@@ -77,7 +77,7 @@ export class ProdukComponent implements OnInit {
 
   TambahData(data: any) {
     Swal.fire({
-      title: 'Do you want to save the changes?',
+      title: 'Kamu Ingin Menyimpan Data?',
       showDenyButton: true,
 
       confirmButtonText: 'Save',
@@ -86,14 +86,10 @@ export class ProdukComponent implements OnInit {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         console.log('data tambah', data);
-        const tmp = {
-          data: {
-            Produk: data.Produk,
-            Harga: parseInt(data.Harga),
-          },
-        };
+
+        console.log('data tambah tmp', data);
         this.produkService
-          .PostProduk(tmp)
+          .PostProduk(data)
           .pipe(
             finalize(() => {
               console.log('done');
@@ -111,7 +107,7 @@ export class ProdukComponent implements OnInit {
   }
   EditData(id: any, data: any) {
     Swal.fire({
-      title: 'Do you want to save the changes?',
+      title: 'Kamu Ingin Menyimpan Perubahan data?',
       showDenyButton: true,
 
       confirmButtonText: 'Save',
@@ -124,11 +120,11 @@ export class ProdukComponent implements OnInit {
         const tmp = {
           data: {
             Produk: data.Produk,
-            Harga: parseInt(data.Harga),
+            Harga: data.Harga,
           },
         };
         this.produkService
-          .UpdataProduk(id, tmp)
+          .UpdataProduk(id, data)
           .pipe(
             finalize(() => {
               console.log('done');
