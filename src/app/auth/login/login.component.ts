@@ -41,12 +41,14 @@ export class LoginComponent implements OnInit {
   }
   Login() {
     console.log('form login', this.LoginForm.value);
+
     const tmp = {
       identifier: 'admin@gmail.com',
       password: 'admin123',
     };
     this.authService
-      .loginUser(this.LoginForm.value)
+      .loginUser(tmp)
+      // .loginUser(this.LoginForm.value)
       .pipe(
         finalize(() => {
           console.log('done');
